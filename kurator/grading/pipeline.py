@@ -208,8 +208,6 @@ class Grader:
                 f"Task {no}. Answer: {task.answer}. Key steps: {steps}."
                 + (f" Cases: {cases}." if cases else "")
             )
-            if task.beyond_grade_4:
-                disputed.add(no)
         return "\n".join(lines), disputed
 
     # ---------------------------------------------------------- steps 3–5

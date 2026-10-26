@@ -15,4 +15,4 @@ tests/test_sandbox.py::test_buttons_act_as_the_role_the_message_was_for PASSED
 tests/test_sandbox.py::test_two_testers_do_not_see_each_other PASSED
 tests/test_sandbox.py::test_sandbox_budget_cap_stops_llm_calls PASSED
 tests/test_sandbox.py::test_typed_homework_reaches_the_batcher_through_the_telegram_handler PASSED
-270 passed in 8.19s
+271 passed in 8.84s

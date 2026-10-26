@@ -277,7 +277,7 @@ TOTAL  input=6328  cached=2820  output=1961   est. cost $0.0243</pre>
   <tr><td>C6</td><td>Plausible nonsense, perfect layout</td><td>C = 0, leap</td><td>0 / 5, leap ✓</td><td>0 / 5, leap ✓</td></tr>
   <tr><th colspan="3">Average cost per homework (assumed price)</th><th>$0.024</th><th>$0.015 (−37%)</th></tr>
 </table>
-<p><strong>Result:</strong> on these six cases 1 pass was just as accurate and 37% cheaper <span class="tag meas">measured</span>. I still keep 3 passes in production, for a reason the six easy cases can't show: with one pass there is no way to detect that the model is <em>unsure</em> of the reference answer. In the very first live run of this project, before I fixed the vote to compare a short canonical <code>answer_key</code> instead of the full sentence, the three passes "disagreed" on wording alone and sent a trivial homework to human review. That was a <em>cost-neutral quality bug</em>, found and fixed through these measurements. The honest conclusion: the right setting is probably 1 pass for short and simple homework and 3 for multi-step problems. That is a next step.</p>
+<p><strong>Result:</strong> on these six cases 1 pass was just as accurate and 37% cheaper <span class="tag meas">measured</span>. I still keep 3 passes in production, for a reason the six easy cases can't show: with one pass there is no way to detect that the model is <em>unsure</em> of the reference answer. In the very first live run of this project, before I fixed the vote to compare a short canonical <code>answer_key</code> instead of the full sentence, the three passes "disagreed" on wording alone and sent a trivial homework to human review. That was a <em>cost-neutral quality bug</em>, found and fixed through these measurements. Live testing in Telegram found a second one of the same kind: a rule left over from the single-family version sent any task “above 4th-grade level” to human review, so a correct “15% of 80 = 12” was not scored. It is removed and covered by a test. The honest conclusion: the right setting is probably 1 pass for short and simple homework and 3 for multi-step problems. That is a next step.</p>
 <div class="callout warn"><strong>Another honest observation.</strong> In the live runs the solver calls return in 100–600 ms with identical outputs across runs. That points to response caching in the Portkey gateway. It saves money, but it makes the three "independent" passes less independent. In production I'd disable gateway caching for the solver role.</div>
 
 <!-- 6. SAFETY -->
@@ -325,8 +325,8 @@ tests/test_sandbox.py::test_buttons_act_as_the_role_the_message_was_for PASSED
 tests/test_sandbox.py::test_two_testers_do_not_see_each_other PASSED
 tests/test_sandbox.py::test_sandbox_budget_cap_stops_llm_calls PASSED
 tests/test_sandbox.py::test_typed_homework_reaches_the_batcher_through_the_telegram_handler PASSED
-270 passed in 8.19s</pre>
-<p style="text-align:center;font-size:.85rem;color:var(--muted)">Figure 2b. Safety tests passing (output from <code>evidence/pytest_safety.txt</code>). Last line: the full suite, 270 tests, no network.</p>
+271 passed in 8.84s</pre>
+<p style="text-align:center;font-size:.85rem;color:var(--muted)">Figure 2b. Safety tests passing (output from <code>evidence/pytest_safety.txt</code>). Last line: the full suite, 271 tests, no network.</p>
 
 <h3>Defense 2: a refused grade instead of a wrong one</h3>
 <p>In the pilot, on real handwriting of olympiad problems, the gates sent <strong>20 of 21</strong> grades to human review <span class="tag meas">measured</span>. The most common reasons were one task out of eight being unreadable or disputed (partial grading then skips that task), and confidence below 0.7. That is the system being conservative, and it is also its biggest weakness (Section 8).</p>

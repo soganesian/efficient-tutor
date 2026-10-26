@@ -329,3 +329,16 @@ async def test_spend_older_than_a_day_does_not_count(engine, gateway, config, cl
 
     assert app.spent_today() == 0.0
     assert not app.budget_exhausted()
+
+
+async def test_a_task_above_some_grade_level_is_not_disputed():
+    """Any age, any subject: the old single-family rule "above 4th grade → human" is gone."""
+    case = dict(CASES["C2"])
+    solver = {"tasks": [{**SOLVER_GRASSHOPPER["tasks"][0], "beyond_grade_4": True}]}
+    case["solver"] = solver
+    result = await build(case).run(
+        assignment_text=case["assignment"], solution_files=[], solution_text=case["solution"]
+    )
+
+    assert result.scores["needs_human"] == 0
+    assert result.scores["score_correctness"] == 3
