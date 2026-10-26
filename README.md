@@ -22,6 +22,8 @@ Final project for MGT 409 *AI Foundations for Managers*, Yale SOM, Fall 2026 · 
 4. Tap **Accept** under the feedback. Then switch to **👩 I'm the Parent** to read the report, see **What the bot read** and mark the grade ✓/✗.
 5. **⏩ Skip time** moves the demo clock: you'll see deadline reminders, missed-homework alerts and the weekly summary.
 
+In Telegram Web or Desktop the role keyboard may be hidden behind the ⌘ icon next to the message box. The commands `/as_tutor`, `/as_student`, `/as_parent` and `/skip_time` do the same.
+
 Every message shows who it is addressed to (📨 to 🧑‍🏫 Tutor / 🧒 Student / 👩 Parent). `/demo` starts over.
 
 ## Running it locally (no Telegram needed)

@@ -62,7 +62,8 @@ WELCOME = (
     "3. 👩 Switch to the Parent: you get the report, the transcript of what the AI read, "
     "and ✓/✗ buttons to correct it.\n"
     "4. ⏩ Skip time to see reminders, missed-deadline alerts and the weekly summary.\n\n"
-    "Use the keyboard below to switch roles. /demo starts over."
+    "Use the keyboard below to switch roles (or /as_tutor, /as_student, /as_parent, "
+    "/skip_time). /demo starts over."
 )
 
 HELP = {
