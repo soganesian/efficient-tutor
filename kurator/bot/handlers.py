@@ -542,6 +542,13 @@ _move_mode: dict[int, int] = {}
 async def on_content(message: Message) -> None:
     kurator = _kurator(message)
     person = _person(kurator, message)
+    log_event(
+        log,
+        "content.received",
+        tg_user_id=message.from_user.id,
+        role=(person or {}).get("role"),
+        kind="photo" if message.photo else "document" if message.document else "text",
+    )
     if person is None:
         return
     if person["role"] == "parent":

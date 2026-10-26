@@ -25,7 +25,12 @@ def family(engine, clock):
         engine, "tutor", "the tutor", "Europe/Moscow", "t-m", now, username="mayya_math_tutor"
     )
     repo.add_tutor(engine, tutor_row, "mathematics", 2, "18:00", 60)
-    return {"parent_one": parent_one, "parent_two": parent_two, "student": student, "tutor_row": tutor_row}
+    return {
+        "parent_one": parent_one,
+        "parent_two": parent_two,
+        "student": student,
+        "tutor_row": tutor_row,
+    }
 
 
 def test_username_lookup_is_case_insensitive_and_ignores_at(engine, family):

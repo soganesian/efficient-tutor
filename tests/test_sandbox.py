@@ -107,3 +107,34 @@ async def test_sandbox_budget_cap_stops_llm_calls(registry):
     repo.record_llm_call(box.kurator.engine, box.clock.now(), "grader", "gpt-6-luna", cost_usd=1.0)
 
     assert box.kurator.budget_exhausted()
+
+
+async def test_typed_homework_reaches_the_batcher_through_the_telegram_handler(registry):
+    """Regression: the content handler once resolved the sender outside the sandbox and
+    silently dropped every message (live demo, 26.10.2026)."""
+    from types import SimpleNamespace as NS
+
+    from kurator.bot import handlers
+
+    handlers.setup(None, registry)
+    try:
+        await _start(registry)
+
+        async def answer(*_args, **_kwargs):
+            return None
+
+        message = NS(
+            from_user=NS(id=TESTER, username="tester"),
+            chat=NS(id=TESTER),
+            text="Task 1: 2 + 2 = ?",
+            photo=None,
+            document=None,
+            media_group_id=None,
+            message_id=99,
+            answer=answer,
+        )
+        await handlers.on_content(message)
+    finally:
+        handlers.setup(None, None)
+
+    assert any("Accepting assignment" in t for t in registry.gw.texts_to(TESTER))
