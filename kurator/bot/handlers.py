@@ -71,6 +71,8 @@ def _person(kurator: Kurator, message: Message) -> dict | None:
     so the person's first message is the only time the link can be established at all.
     No invitation code is required for this.
     """
+    if _REGISTRY is not None:  # demo: the tester speaks as the role they picked
+        return _sandbox(message).person()
     person = repo.person_by_tg(kurator.engine, message.from_user.id)
     if person is not None:
         return person
