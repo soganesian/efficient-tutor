@@ -1,0 +1,146 @@
+LIVE RUN · provider portkey · {'vision': 'gpt-6-luna', 'solver': 'gpt-6-luna', 'grader': 'gpt-6-luna', 'matcher': 'gpt-6-luna', 'hint': 'gpt-6-luna'}
+
+==============================================================
+STEP 1. The tutor sends homework after the lesson
+==============================================================
+
+┌─ → The tutor   [Wed 09.09 15:00 Moscow time]
+│ Accepting assignment for lesson Wed 09.09 18:00.
+│ Files received: 1.
+│ When you've sent everything, tap the button.
+│ [Done, that's all]
+└────────────────────────────────────────────────────────────
+
+==============================================================
+STEP 2. The tutor presses "Done" — the bot processes the homework and sets a deadline
+==============================================================
+
+┌─ → The student   [Wed 09.09 15:00 Moscow time]
+│ An assignment has arrived. Tasks: 1. Deadline: Tue 15.09 21:00.
+│ Send your solution as a photo or file, then tap “Done”.
+└────────────────────────────────────────────────────────────
+
+┌─ → Parent 1   [Wed 09.09 15:00 Moscow time]
+│ 📥 Assignment received · mathematics · The tutor
+│ Lesson: Wed 09.09 11:00
+│ Topics: Movement along a line; parity of jumps
+│ Tasks: 1
+│ Submission deadline: Tue 15.09 14:00
+│ 
+│ What the bot read in the assignment:
+│ A grasshopper jumps along a line, each jump 1 square to the left or to the right. Can it return to its starting square after exactly 11 jumps?
+│ [Show assignment]
+└────────────────────────────────────────────────────────────
+
+┌─ → Parent 2   [Wed 09.09 15:00 Moscow time]
+│ 📥 Assignment received · mathematics · The tutor
+│ Lesson: Wed 09.09 18:00
+│ Topics: Movement along a line; parity of jumps
+│ Tasks: 1
+│ Submission deadline: Tue 15.09 21:00
+│ 
+│ What the bot read in the assignment:
+│ A grasshopper jumps along a line, each jump 1 square to the left or to the right. Can it return to its starting square after exactly 11 jumps?
+│ [Show assignment]
+└────────────────────────────────────────────────────────────
+
+==============================================================
+STEP 3. A day passes, no solution — reminder to the student
+==============================================================
+
+==============================================================
+STEP 4. The student sends a solution and presses "Done" — grade and feedback go to them first
+==============================================================
+
+┌─ → The student   [Tue 15.09 01:00 Moscow time]
+│ Accepting solution for lesson Wed 09.09 18:00.
+│ Files received: 1.
+│ When you've sent everything, tap the button.
+│ [Done, that's all]
+└────────────────────────────────────────────────────────────
+
+┌─ → Parent 1   [Tue 15.09 01:00 Moscow time]
+│ 📤 The student submitted a solution · mathematics · lesson #1
+│ Attempt 1, attachments: 1.
+│ Sending it for review — feedback will arrive afterward.
+│ [Show solution]
+└────────────────────────────────────────────────────────────
+
+┌─ → Parent 2   [Tue 15.09 01:00 Moscow time]
+│ 📤 The student submitted a solution · mathematics · lesson #1
+│ Attempt 1, attachments: 1.
+│ Sending it for review — feedback will arrive afterward.
+│ [Show solution]
+└────────────────────────────────────────────────────────────
+
+==============================================================
+STEP 5. The student presses "Accept" — the report goes to both parents
+==============================================================
+
+┌─ → Parent 1   [Tue 15.09 01:00 Moscow time]
+│ 📘 mathematics · The tutor · lesson Wed 09.09 11:00
+│ Topics: Movement along a line; parity of jumps
+│ 
+│ Solution is there. All solved correctly.
+│ 
+│ Grade: 8/10  (L2 T1 S2 C3)
+│ An unjustified leap in the reasoning was detected.
+│ 
+│ By task:
+│ 1. 3/3 — The answer is correct. The stated reason points to the odd number of j…
+│ 
+│ Comment: The answer is correct. The written reason notes that 11 is odd but does not explain how the parity of the jumps determines the displacement; this is reflected as a structural gap.
+│ Attempts: 1
+│ [✓ graded correctly] [✗ incorrect] [What the bot read] [Show solution] [Correct grade]
+└────────────────────────────────────────────────────────────
+
+┌─ → Parent 2   [Tue 15.09 01:00 Moscow time]
+│ 📘 mathematics · The tutor · lesson Wed 09.09 18:00
+│ Topics: Movement along a line; parity of jumps
+│ 
+│ Solution is there. All solved correctly.
+│ 
+│ Grade: 8/10  (L2 T1 S2 C3)
+│ An unjustified leap in the reasoning was detected.
+│ 
+│ By task:
+│ 1. 3/3 — The answer is correct. The stated reason points to the odd number of j…
+│ 
+│ Comment: The answer is correct. The written reason notes that 11 is odd but does not explain how the parity of the jumps determines the displacement; this is reflected as a structural gap.
+│ Attempts: 1
+│ [✓ graded correctly] [✗ incorrect] [What the bot read] [Show solution] [Correct grade]
+└────────────────────────────────────────────────────────────
+
+==============================================================
+DATABASE SUMMARY
+==============================================================
+lesson state:        REPORTED
+correctness:         3  (total: 8)
+needs_human:        0 — None
+unjustified leap:    True
+reference solution source: model_independent
+LLM calls:           5
+  parse_assignment   gpt-6-luna   input=  480 cached=    0 output=  145   1144ms
+  grading            gpt-6-luna   input=  590 cached=    0 output=  157    330ms
+  grading            gpt-6-luna   input=  597 cached=    0 output=  393    261ms
+  grading            gpt-6-luna   input=  592 cached=    0 output=  370    205ms
+  grading            gpt-6-luna   input= 2992 cached=    0 output=  727   5829ms
+TOTAL               input=5251 cached=0 output=1792  est. cost $0.0245
+
+Event order (who received feedback first):
+  2026-09-09T12:00:00+00:00  batch.open:assignment
+  2026-09-09T12:00:00+00:00  batch.close:assignment
+  2026-09-09T12:00:00+00:00  state:SCHEDULED->ASSIGNMENT_RECEIVED
+  2026-09-09T12:00:00+00:00  state:ASSIGNMENT_RECEIVED->AWAITING_SOLUTION
+  2026-09-09T12:00:00+00:00  notify:assignment_ready
+  2026-09-09T12:00:00+00:00  notify:assignment_parent
+  2026-09-09T12:00:00+00:00  notify:assignment_parent
+  2026-09-14T22:00:00+00:00  batch.open:solution
+  2026-09-14T22:00:00+00:00  batch.close:solution
+  2026-09-14T22:00:00+00:00  state:AWAITING_SOLUTION->GRADING
+  2026-09-14T22:00:00+00:00  notify:solution_received
+  2026-09-14T22:00:00+00:00  notify:solution_received
+  2026-09-14T22:00:00+00:00  state:GRADING->GRADED
+  2026-09-14T22:00:00+00:00  state:GRADED->REPORTED
+  2026-09-14T22:00:00+00:00  notify:report_session
+  2026-09-14T22:00:00+00:00  notify:report_session

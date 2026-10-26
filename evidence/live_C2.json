@@ -1,0 +1,54 @@
+{
+ "case": "C2",
+ "inject": false,
+ "correctness": 3,
+ "total": 9,
+ "needs_human": 0,
+ "reason": null,
+ "leap": 0,
+ "calls": [
+  {
+   "purpose": "parse_assignment",
+   "in": 480,
+   "out": 145,
+   "ms": 1113,
+   "cached": 0
+  },
+  {
+   "purpose": "grading",
+   "in": 984,
+   "out": 141,
+   "ms": 2384,
+   "cached": 0
+  },
+  {
+   "purpose": "grading",
+   "in": 590,
+   "out": 157,
+   "ms": 114,
+   "cached": 0
+  },
+  {
+   "purpose": "grading",
+   "in": 597,
+   "out": 393,
+   "ms": 124,
+   "cached": 0
+  },
+  {
+   "purpose": "grading",
+   "in": 592,
+   "out": 370,
+   "ms": 351,
+   "cached": 0
+  },
+  {
+   "purpose": "grading",
+   "in": 3019,
+   "out": 640,
+   "ms": 5721,
+   "cached": 2820
+  }
+ ],
+ "cost_usd": 0.023115
+}

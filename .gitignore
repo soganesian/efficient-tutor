@@ -1,0 +1,12 @@
+.env
+*.db
+*.db-journal
+data/
+calibration/live_*.yaml
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+backups/
+secrets/

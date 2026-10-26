@@ -1,0 +1,40 @@
+{
+ "case": "C4",
+ "inject": null,
+ "correctness": 3,
+ "total": 9,
+ "needs_human": 0,
+ "reason": null,
+ "leap": 1,
+ "calls": [
+  {
+   "purpose": "parse_assignment",
+   "in": 489,
+   "out": 138,
+   "ms": 1116,
+   "cached": 0
+  },
+  {
+   "purpose": "grading",
+   "in": 996,
+   "out": 134,
+   "ms": 337,
+   "cached": 0
+  },
+  {
+   "purpose": "grading",
+   "in": 599,
+   "out": 344,
+   "ms": 730,
+   "cached": 0
+  },
+  {
+   "purpose": "grading",
+   "in": 3069,
+   "out": 1142,
+   "ms": 217,
+   "cached": 2820
+  }
+ ],
+ "cost_usd": 0.02084875
+}

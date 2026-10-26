@@ -1,0 +1,12 @@
+services:
+  efficient-tutor:
+    build: .
+    image: efficient-tutor:latest
+    container_name: efficient-tutor
+    restart: always
+    env_file: .env
+    volumes:
+      - ./data:/app/data            # sandboxes and files survive rebuilds
+    logging:
+      driver: json-file
+      options: { max-size: "10m", max-file: "5" }

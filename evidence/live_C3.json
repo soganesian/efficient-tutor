@@ -1,0 +1,47 @@
+{
+ "case": "C3",
+ "inject": false,
+ "correctness": 3,
+ "total": 8,
+ "needs_human": 0,
+ "reason": null,
+ "leap": 1,
+ "calls": [
+  {
+   "purpose": "parse_assignment",
+   "in": 480,
+   "out": 145,
+   "ms": 1144,
+   "cached": 0
+  },
+  {
+   "purpose": "grading",
+   "in": 590,
+   "out": 157,
+   "ms": 330,
+   "cached": 0
+  },
+  {
+   "purpose": "grading",
+   "in": 597,
+   "out": 393,
+   "ms": 261,
+   "cached": 0
+  },
+  {
+   "purpose": "grading",
+   "in": 592,
+   "out": 370,
+   "ms": 205,
+   "cached": 0
+  },
+  {
+   "purpose": "grading",
+   "in": 2992,
+   "out": 727,
+   "ms": 5829,
+   "cached": 0
+  }
+ ],
+ "cost_usd": 0.024483750000000002
+}

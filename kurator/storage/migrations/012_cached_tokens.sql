@@ -1,0 +1,1 @@
+ALTER TABLE llm_call ADD COLUMN cached_tokens INTEGER NOT NULL DEFAULT 0;

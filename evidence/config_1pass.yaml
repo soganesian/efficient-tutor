@@ -1,0 +1,78 @@
+# Efficient Tutor — behaviour config. No hardcoded values in code: everything is here.
+# Secrets (PORTKEY_API_KEY, BOT_TOKEN) live in .env — see .env.example.
+
+timeouts:
+  ask_lesson_after_min: 15                  # after a lesson ends, ask the tutor whether it happened
+  assignment_expected_after_lesson_h: 3     # silence from the tutor after this counts as "it happened"
+  nudge_tutor_after_h: 20                   # from lesson end: remind the tutor to send homework
+  assignment_missing_after_h: 30            # from lesson end: homework missing → alert parent
+  solution_due_before_next_lesson_h: 12     # homework is due this long before the next lesson
+  attempt2_due_after_h: 24                  # deadline for the second attempt
+  nudge_child_before_due_h: [24, 2]         # reminders to the student before the deadline
+  batch_idle_close_min: 10                  # photos sent in a row form one submission
+  batch_max_items: 30
+  media_group_wait_sec: 2
+  supplement_window_min: 30
+  regrade_window_min: 180
+  graded_auto_report_h: 6                   # student did not react → report goes to parent anyway
+  stuck_close_after_days: 7
+  missing_close_after_days: 7
+  grading_timeout_min: 15
+  schedule_horizon_days: 7
+
+quiet_hours_local: ["21:30", "08:00"]      # no messages to the student at night (student's tz)
+
+llm:
+  provider: "portkey"                       # portkey | anthropic | gemini
+
+models:                                     # one model for every role (course key: gpt-6-luna only)
+  vision: "gpt-6-luna"                      # reads handwriting and the assignment
+  solver: "gpt-6-luna"                      # solves each task independently, 3 passes
+  grader: "gpt-6-luna"                      # checks the work against the rubric
+  matcher: "gpt-6-luna"                     # "is this the right homework?" before grading
+  hint: "gpt-6-luna"                        # a short hint on the current homework
+
+prices:                                     # $ per 1M tokens: input, cached input, output
+  # ASSUMPTION: the course key bills the course, and no public price for gpt-6-luna
+  # was found. These are GPT-5-class list prices, used only to estimate cost.
+  gpt-6-luna: [1.25, 0.125, 10.0]
+
+grading:
+  independent_passes: 1                     # majority 2 of 3 decides the reference answer
+  min_confidence_no_human_review: 0.7       # below this the grade is flagged for the parent
+  max_solution_attempts: 2
+  max_retries: 2
+  call_timeout_sec: 90
+  total_timeout_min: 8
+  rubric_version: "generic-1"
+
+hints:
+  max_per_homework: 3
+  max_words: 60
+
+limits:
+  daily_usd: 5.0                            # hard daily LLM spend cap for the whole bot
+  sandbox_daily_usd: 0.50                   # per-tester cap in /demo sandboxes
+
+reports:
+  weekly_cron_local_parent: "SUN 20:00"
+  monthly_local_parent: "1 10:00"
+  transcript_preview_chars: 400
+  heightened_attention_until: "2000-01-01"  # full transcripts in every report until this date
+
+sheets:
+  enabled: false                            # optional Google Sheets dashboard export
+  spreadsheet_id: ""
+
+sandbox:
+  enabled: true                             # every Telegram user gets an isolated demo family
+  dir: "data/sandboxes"
+  subject: "math"
+
+storage:
+  db_path: "data/bot.db"
+  files_dir: "data/files"
+  backup_dir: "backups"
+  backup_keep: 14
+
+retention_days: 180

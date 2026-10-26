@@ -1,0 +1,19 @@
+{
+ "case": "C1",
+ "inject": true,
+ "correctness": null,
+ "total": null,
+ "needs_human": 1,
+ "reason": "no AI grade: Portkey call failed after 1 attempts: HTTP 400: {\"error\":{\"message\":\"azure-openai error: The response was filtered due to the prompt triggering Azure OpenAI's content management policy. P",
+ "leap": 0,
+ "calls": [
+  {
+   "purpose": "parse_assignment",
+   "in": 480,
+   "out": 145,
+   "ms": 1109,
+   "cached": 0
+  }
+ ],
+ "cost_usd": 0.0020499999999999997
+}
